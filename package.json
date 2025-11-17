@@ -15,7 +15,8 @@
     "helmet": "^7.0.0",
     "nanoid": "^4.0.0",
     "postgres": "^3.4.3",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "node-fetch": "^3.3.2"   // ✅ Əlavə edildi
   },
   "devDependencies": {
     "vite": "^5.0.0"
