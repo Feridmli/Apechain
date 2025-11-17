@@ -19,7 +19,8 @@ if (!BACKEND_URL || !NFT_CONTRACT_ADDRESS || !SEAPORT_CONTRACT_ADDRESS) {
   process.exit(1);
 }
 
-const provider = new ethers.JsonRpcProvider(APECHAIN_RPC);
+// ethers v5 üçün provider
+const provider = new ethers.providers.JsonRpcProvider(APECHAIN_RPC);
 
 // Minimal Seaport event ABI
 const seaportABI = [
@@ -51,7 +52,6 @@ async function postOrderEvent(payload) {
 async function main() {
   console.log("🚀 On-chain Seaport Sync başladı...");
 
-  // Past events üçün block-range limit təyin et (daha böyük layihələrdə batch lazım ola bilər)
   const fromBlock = process.env.FROM_BLOCK ? parseInt(process.env.FROM_BLOCK) : 0;
   const toBlock = await provider.getBlockNumber();
 
@@ -65,13 +65,13 @@ async function main() {
     const { orderHash, offerer, fulfiller, recipient, paymentToken, price, tokenIds } = ev.args;
 
     const payload = {
-      tokenId: tokenIds.map(t => t.toString()).join(","), // bir neçə token ola bilər
-      price: ethers.formatEther(price),
+      tokenId: tokenIds.map(t => t.toString()).join(","),
+      price: ethers.utils.formatEther(price),
       sellerAddress: offerer.toLowerCase(),
       buyerAddress: fulfiller.toLowerCase(),
       seaportOrder: { orderHash },
       orderHash: orderHash,
-      image: null, // Backend-də lazım olsa, token metadata yüklənə bilər
+      image: null,
       nftContract: NFT_CONTRACT_ADDRESS,
       marketplaceContract: SEAPORT_CONTRACT_ADDRESS,
       status: "fulfilled"
