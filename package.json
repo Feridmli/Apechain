@@ -16,7 +16,7 @@
     "nanoid": "^4.0.0",
     "postgres": "^3.4.3",
     "dotenv": "^16.0.0",
-    "node-fetch": "^3.3.2"   // ✅ Əlavə edildi
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "vite": "^5.0.0"
