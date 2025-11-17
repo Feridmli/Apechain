@@ -11,7 +11,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const connectionString = process.env.DATABASE_URL ||
-  "postgresql://postgres:fuc12345@db.uthaxzcetfgwpbxvrcxg.supabase.co:5432/postgres";
+  "postgresql://postgres:Apechain123@db.mjkpgjdawrlsuglcdxwl.supabase.co:5432/postgres";
 
 const sql = postgres(connectionString, { ssl: { rejectUnauthorized: false } });
 
